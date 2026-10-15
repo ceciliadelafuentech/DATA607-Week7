@@ -1,0 +1,16 @@
+---
+title: "Assignment7"
+author: "Cecilia De La Fuente Chavez"
+format: html
+execute:
+  echo: true
+editor: visual
+---
+
+## Approach Deliverable
+
+### Overview
+
+For Assignment 7, I will start by manually creating two files, one HTML file and one JSON file, containing information about three books, including their titles, authors, publication years, and two more columns of my choosing; publisher and subject. Then, I will research and use the appropriate R packages to read both files into separate data frames. Finally, I will compare the two data frames to determine whether they contain the same data and structure.
+
+The books I am choosing for "My Book Shelf" are *R for Data Science* by Hadley Wickham, Mine Çetinkaya-Rundel and Garrett Grolemund, *The Catcher in the Rye* by J. D. Salinger, and *Tides: The Science and Spirit of the Ocean* by Jonathan White

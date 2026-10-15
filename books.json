@@ -1,0 +1,31 @@
+[
+  {
+    "title": "R for Data Science",
+    "authors": [
+      "Hadley Wickham",
+      "Mine Çetinkaya-Rundel",
+      "Garrett Grolemund"
+    ],
+    "year": 2023,
+    "publisher": "O'Reilly Media",
+    "subject": "Data science"
+  },
+  {
+    "title": "The Catcher in the Rye",
+    "authors": [
+      "J. D. Salinger"
+    ],
+    "year": 1951,
+    "publisher": "Little, Brown and Company",
+    "subject": "Fiction"
+  },
+  {
+    "title": "Tides: The Science and Spirit of the Ocean",
+    "authors": [
+      "Jonathan White"
+    ],
+    "year": 2017,
+    "publisher": "Trinity University Press",
+    "subject": "Ocean science"
+  }
+]
