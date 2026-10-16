@@ -305,11 +305,15 @@ The following object is masked from 'package:purrr':
 </section>
 <section id="conclusion" class="level3">
 <h3 class="anchored" data-anchor-id="conclusion">Conclusion</h3>
-<p>text</p>
+<p>After manually creating the HTML and JSON files about three books, I used the rvest and jsonlite packages to import the information into R. Both files produced objects with three rows and five columns, but the initial identical() comparison returned FALSE.</p>
+<p>After checking the column names, I standardized them so both tables used the same names. However, the comparison still returned FALSE because the authors column had different data types: the HTML stored authors as character strings, while the JSON stored them as lists. I used map_chr() and paste() to combine the authors in the JSON lists into a character string to match the HTML format.</p>
+<p>The comparison still returned FALSE because the HTML data was a tibble, while the JSON one was a data frame. I converted the HTML to a regular data frame using as.data.frame(). After these transformations, identical() returned TRUE.</p>
+<p>This process showed that even when two files contain the same information, importing them into R can produce different structures, which does not make them identical unless transformations are made.</p>
 </section>
 <section id="ai-assistance" class="level3">
 <h3 class="anchored" data-anchor-id="ai-assistance">AI Assistance</h3>
-<p>text</p>
+<p>OpenAI. (2026). ChatGPT [Generative AI chat]. <a href="https://chatgpt.com/" class="uri">https://chatgpt.com/</a></p>
+<p>ChatGPT was used as a supplemental tool to help understand R syntax, troubleshoot code, and clarify the steps used to import and compare data from HTML and JSON files, including standardizing column names, data types, and object classes.</p>
 </section>
 </section>
 
