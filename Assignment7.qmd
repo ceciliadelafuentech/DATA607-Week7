@@ -14,3 +14,126 @@ editor: visual
 For Assignment 7, I will start by manually creating two files, one HTML file and one JSON file, containing information about three books, including their titles, authors, publication years, and two more columns of my choosing; publisher and subject. Then, I will research and use the appropriate R packages to read both files into separate data frames. Finally, I will compare the two data frames to determine whether they contain the same data and structure.
 
 The books I am choosing for "My Book Shelf" are *R for Data Science* by Hadley Wickham, Mine Çetinkaya-Rundel and Garrett Grolemund, *The Catcher in the Rye* by J. D. Salinger, and *Tides: The Science and Spirit of the Ocean* by Jonathan White
+
+## Code Base Deliverable
+
+### Load libraries
+
+To be able to read the HTML file, I loaded the rvest package. For the JSON data I loaded the jsonlite package. As usual, I also loaded tidyverse for other commonly used functions.
+
+```{r}
+library(tidyverse)
+library(rvest)
+library(jsonlite)
+```
+
+### Data and transformations
+
+Load HTML file from github and create object from table
+
+```{r}
+# Read the HTML file
+html_raw <- read_html("https://raw.githubusercontent.com/ceciliadelafuentech/DATA607-Week7/refs/heads/main/books.html")
+
+# Extract the table
+html_data <- html_raw |>
+  html_element("table") |>
+  html_table()
+
+# View the data
+html_data
+```
+
+Load JSON file from github and create object from the data
+
+```{r}
+# Read the JSON file
+json_data <- fromJSON("https://raw.githubusercontent.com/ceciliadelafuentech/DATA607-Week7/refs/heads/main/books.json")
+
+# View the data
+json_data
+```
+
+Compare the objects to check whether they are identical
+
+```{r}
+identical(html_data, json_data)
+
+```
+
+The output showed false so compare the dimensions and column names for each
+
+```{r}
+# Compare dimensions
+dim(html_data)
+dim(json_data)
+
+# Compare column names
+names(html_data)
+names(json_data)
+```
+
+The dimensions are the same but the column names are different so standardize them
+
+```{r}
+# Rename HTML column names
+html_clean <- html_data |>
+  rename(
+    title = Title,
+    authors = `Author(s)`,
+    year = Year,
+    publisher = Publisher,
+    subject = Subject
+  )
+```
+
+Check if identical again and check for each column's class
+
+```{r}
+identical(html_clean, json_data)
+
+# Compare column value class
+sapply(html_clean, class)
+sapply(json_data, class)
+```
+
+The comparison is still false. The values in the authors column in the JSON dataframe are lists so apply formula to return character vector
+
+```{r}
+# Transform authors values 
+json_clean <- json_data |>   
+  mutate(     
+    authors = map_chr(authors, paste, collapse = ", ")   
+  )
+
+sapply(json_clean, class)
+```
+
+Comparison still returns false so check each object's class
+
+```{r}
+identical(html_clean, json_clean)
+
+# Compare individual objects
+class(html_clean)
+class(json_clean)
+```
+
+Transform both objects to dataframes, which should make the comparison TRUE
+
+```{r}
+# Change HTML to df
+html_clean <- as.data.frame(html_clean)
+
+class(html_clean)
+
+identical(html_clean, json_clean)
+```
+
+### Conclusion
+
+text
+
+### AI Assistance
+
+text
